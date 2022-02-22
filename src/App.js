@@ -19,13 +19,25 @@ function App() {
     // munged.map(() => polarxy.push({ x: 'color', y: 'totalCount' }));
   }
 
+
   function getColors(){
     for (let m of munged) {
-      colorArr.push(m.color);
+      colorArr.push({
+        x: m.key + 1,
+        y: m.totalCount,
+        label: `${m.totalCount} ${m.color}`
+      });
     }
     return colorArr;
   }
 
+  const justColorArr = [];
+  function justColors(){
+    for (let m of munged) {
+      justColorArr.push(m.color);
+    }
+    return justColorArr;
+  }
   return (
     <>
       <DataGrid
@@ -82,10 +94,12 @@ function App() {
           data={getxy()}
         />
       </VictoryChart>
+
       <VictoryPie
-        colorScale={getColors()}
-        data={getxy()}
+        colorScale={justColors()}
+        data={getColors()}
       />
+
       <VictoryChart>
         <VictoryAxis
           style={{

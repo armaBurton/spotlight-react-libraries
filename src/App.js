@@ -6,17 +6,14 @@ import jsonData from './MOCK_DATA.json';
 
 function App() {
   const response = JSON.parse(JSON.stringify(jsonData));
-  console.log(`|| response >`, response);
   const munged = makeCountByFavColor(response);
   const polarxy = [];
   const colorArr = [];
   // response.map(line => console.log(`|| line >`, line));
-  console.log(`|| munged >`, munged);
 
   function getxy() {
     for (let m of munged) {
       polarxy.push({ x: m.color, y: m.totalCount });
-      console.log(`|| m.color, m.totalCount >`, m.color, m.totalCount);
     }
     return polarxy;
     // munged.map(() => polarxy.push({ x: 'color', y: 'totalCount' }));
